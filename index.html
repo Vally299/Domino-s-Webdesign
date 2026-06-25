@@ -1,0 +1,664 @@
+<!DOCTYPE html>
+<html lang="fr" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <meta name="theme-color" content="#0E0E0E" />
+  <meta name="color-scheme" content="dark" />
+
+  <title>Domino Web — Agence web premium & créative</title>
+  <meta name="description" content="Domino Web conçoit des sites internet premium, créatifs et sur-mesure. Design, développement, refonte et SEO pour des marques qui veulent se démarquer." />
+  <meta name="author" content="Domino Web" />
+  <meta name="keywords" content="agence web, site internet premium, design, développement, refonte, SEO, branding, France" />
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Domino Web — Agence web premium & créative" />
+  <meta property="og:description" content="Sites web sur-mesure, créatifs et performants pour marques ambitieuses." />
+  <meta property="og:locale" content="fr_FR" />
+  <meta property="og:site_name" content="Domino Web" />
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Domino Web — Agence web premium & créative" />
+  <meta name="twitter:description" content="Sites web sur-mesure, créatifs et performants pour marques ambitieuses." />
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/icons/logo-domino-favicon.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="assets/icons/logo-domino-favicon.png" />
+  <link rel="apple-touch-icon" href="assets/icons/logo-domino-favicon.png" />
+
+  <!-- Preconnect -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="preconnect" href="https://cdn.jsdelivr.net" />
+
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,300;12..96,400;12..96,500;12..96,600;12..96,700;12..96,800&family=Caveat:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Manrope:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+
+  <!-- Lucide icons (will be loaded as SVG inline by JS) -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <!-- GSAP -->
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js" defer></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js" defer></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollSmoother.min.js" defer></script>
+
+  <!-- Lenis -->
+  <script src="https://cdn.jsdelivr.net/npm/@studio-freight/lenis@1.0.42/dist/lenis.min.js" defer></script>
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="css/reset.css" />
+  <link rel="stylesheet" href="css/variables.css" />
+  <link rel="stylesheet" href="css/typography.css" />
+  <link rel="stylesheet" href="css/layout.css" />
+  <link rel="stylesheet" href="css/components.css" />
+  <link rel="stylesheet" href="css/animations.css" />
+  <link rel="stylesheet" href="css/carousel.css" />
+  <link rel="stylesheet" href="css/responsive.css" />
+</head>
+<body>
+  <!-- Grain overlay -->
+  <div class="grain" aria-hidden="true"></div>
+
+  <!-- Loader — effet porte 3D néomorphique (deux panneaux latéraux) -->
+  <div class="loader" id="loader" aria-hidden="true">
+    <div class="loader__panel loader__panel--left"  aria-hidden="true">
+      <div class="loader__panel-edge"></div>
+      <div class="loader__panel-overlay"></div>
+    </div>
+    <div class="loader__panel loader__panel--right" aria-hidden="true">
+      <div class="loader__panel-edge"></div>
+      <div class="loader__panel-overlay"></div>
+    </div>
+
+    <div class="loader__center-glow"></div>
+    <div class="loader__center" aria-hidden="true">
+      <div class="loader__mark">
+        <img src="assets/icons/logo-domino.png" alt="Domino Web" class="loader__logo" width="120" height="120" loading="eager" decoding="sync" />
+      </div>
+      <div class="loader__bar"><span></span></div>
+      <p class="loader__caption">Domino Web · <em>loading</em></p>
+    </div>
+  </div>
+
+  <!-- Custom cursor (desktop) -->
+  <div class="cursor cursor--arrow" id="cursor" aria-hidden="true"></div>
+
+  <!-- Floating navbar -->
+  <header class="nav" id="nav">
+    <nav class="nav__bar" aria-label="Navigation principale">
+      <a href="#hero" class="nav__logo" data-magnet>
+        <img src="assets/icons/logo-domino.png" alt="Domino Web" class="nav__logo-img" width="44" height="44" />
+        <span class="nav__logo-text">Domino <em>Web</em></span>
+      </a>
+
+      <ul class="nav__links" role="list">
+        <li><a href="#manifeste" class="nav__link" data-link>Manifeste</a></li>
+        <li><a href="#services" class="nav__link" data-link>Services</a></li>
+        <li><a href="#process" class="nav__link" data-link>Process</a></li>
+        <li><a href="#faq" class="nav__link" data-link>FAQ</a></li>
+      </ul>
+
+      <a href="#contact" class="btn btn--glass btn--neu-glass nav__cta" data-magnet>
+        <span class="btn__label">Démarrer <em>un projet</em></span>
+        <i data-lucide="sparkles"></i>
+      </a>
+
+      <button class="nav__burger" id="navBurger" aria-label="Ouvrir le menu" aria-expanded="false">
+        <span></span>
+        <span></span>
+      </button>
+    </nav>
+  </header>
+
+  <!-- Mobile menu -->
+  <div class="mobile-menu" id="mobileMenu" aria-hidden="true">
+    <ul class="mobile-menu__list" role="list">
+      <li><a href="#hero" class="mobile-menu__link">Accueil</a></li>
+      <li><a href="#manifeste" class="mobile-menu__link">Manifeste</a></li>
+      <li><a href="#services" class="mobile-menu__link">Services</a></li>
+      <li><a href="#process" class="mobile-menu__link">Process</a></li>
+      <li><a href="#faq" class="mobile-menu__link">FAQ</a></li>
+      <li><a href="#contact" class="mobile-menu__link">Contact</a></li>
+    </ul>
+    <div class="mobile-menu__footer">
+      <a href="mailto:dominolaverne24@gmail.com">dominolaverne24@gmail.com</a>
+    </div>
+  </div>
+
+  <main id="smooth-wrapper">
+    <div id="smooth-content">
+
+      <!-- HERO -->
+      <section class="hero" id="hero">
+        <div class="hero__bg" aria-hidden="true">
+          <div class="hero__video" id="heroVideo" aria-hidden="true">
+            <video
+              class="hero__video-el"
+              src="assets/videos/home-demo.mp4"
+              autoplay
+              muted
+              loop
+              playsinline
+              preload="auto"
+            ></video>
+            <div class="hero__video-overlay" aria-hidden="true"></div>
+            <div class="hero__video-glow" aria-hidden="true"></div>
+          </div>
+          <div class="hero__noise" aria-hidden="true"></div>
+        </div>
+
+        <div class="container hero__content">
+          <div class="hero__tag" data-reveal>
+            <span class="dot"></span>
+            <span>Agence web — disponible pour vos projets 2026</span>
+          </div>
+
+          <h1 class="hero__title" data-split>
+            On conçoit des sites<br />
+            qui <em>travaillent</em><br />
+            pour vous.
+          </h1>
+
+          <p class="hero__sub" data-reveal>
+            <strong>Domino Web</strong> est un studio indépendant qui crée des sites internet
+            <em>sur-mesure</em>, rapides et beaux — pour les marques qui veulent se démarquer.
+          </p>
+
+          <ul class="hero__pills" data-reveal>
+            <li><i data-lucide="layout-template"></i> Sites vitrine</li>
+            <li><i data-lucide="search"></i> SEO</li>
+            <li><i data-lucide="sparkles"></i> Branding</li>
+            <li><i data-lucide="refresh-ccw"></i> Refonte</li>
+          </ul>
+
+          <div class="hero__cta" data-reveal>
+            <a href="#contact" class="btn btn--glass btn--neu-glass btn--lg" data-magnet>
+              <span class="btn__label">Démarrer mon projet</span>
+              <i data-lucide="sparkles"></i>
+            </a>
+          </div>
+
+          <div class="hero__meta">
+            <div class="hero__meta-item" data-reveal>
+              <span class="hero__meta-num">04</span>
+              <span class="hero__meta-label">Projets livrés</span>
+            </div>
+            <div class="hero__meta-item" data-reveal>
+              <span class="hero__meta-num">100<span>%</span></span>
+              <span class="hero__meta-label">Sur-mesure</span>
+            </div>
+            <div class="hero__meta-item" data-reveal>
+              <span class="hero__meta-num">~6 sem</span>
+              <span class="hero__meta-label">Délai moyen</span>
+            </div>
+          </div>
+        </div>
+
+        <a href="#manifeste" class="hero__scroll" data-reveal aria-label="Défiler vers le bas">
+          <span class="hero__scroll-text">scroll</span>
+          <span class="hero__scroll-line"></span>
+        </a>
+      </section>
+
+      <!-- MANIFESTE -->
+      <section class="manifeste" id="manifeste">
+        <div class="container">
+          <div class="section-head" data-reveal>
+            <span class="section-head__index">01 — Manifeste</span>
+            <h2 class="section-head__title" data-split>
+              La <em>frénésie</em> du template,<br />
+              on laisse ça aux autres.
+            </h2>
+          </div>
+
+          <div class="manifeste__grid">
+            <p class="manifeste__lead" data-reveal>
+              <span class="manifeste__quote">“</span>Le web est saturé de sites qui se ressemblent. C'est pour ça qu'on préfère
+              construire des expériences <em>uniques</em> — celles qu'on n'a pas encore vues, mais qu'on n'oublie pas.
+            </p>
+
+            <div class="manifeste__cards" data-stagger>
+              <article class="manifeste__card neu-glass" data-reveal>
+                <i data-lucide="zap"></i>
+                <h3>Rapide, vraiment.</h3>
+                <p>Score Lighthouse 95+ sur chaque livraison. Parce que la performance est un design à part entière.</p>
+              </article>
+              <article class="manifeste__card neu-glass" data-reveal>
+                <i data-lucide="palette"></i>
+                <h3>Identité forte.</h3>
+                <p>On ne vend pas du pixel, on vend une direction artistique. Chaque détail raconte quelque chose.</p>
+              </article>
+              <article class="manifeste__card neu-glass" data-reveal>
+                <i data-lucide="target"></i>
+                <h3>Objectif concret.</h3>
+                <p>Un beau site qui ne convertit pas, c'est juste de la déco. On pense ROI dès la première ligne.</p>
+              </article>
+              <article class="manifeste__card neu-glass" data-reveal>
+                <i data-lucide="handshake"></i>
+                <h3>Pas d'agence usine.</h3>
+                <p>Un interlocuteur unique, des créneaux sur-mesure, et zéro bullshit. Comme il se doit.</p>
+              </article>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SERVICES -->
+      <section class="services" id="services">
+        <div class="container">
+          <div class="section-head" data-reveal>
+            <span class="section-head__index">02 — Services</span>
+            <h2 class="section-head__title" data-split>
+              Ce qu'on fait <em>de mieux</em>.
+            </h2>
+            <p class="section-head__sub" data-blur>
+              Une stack resserrée, des process éprouvés, zéro sous-traitance.
+              Du premier coup, du bon coup.
+            </p>
+          </div>
+
+          <div class="services__grid">
+            <article class="service-card neu-glass" data-tilt data-reveal>
+              <div class="service-card__head">
+                <span class="service-card__num">/01</span>
+                <i data-lucide="layout-template"></i>
+              </div>
+              <h3 class="service-card__title">Sites vitrine</h3>
+              <p class="service-card__desc">
+                Présence en ligne qui marque les esprits. Animations, typographie, identité — du sur-mesure.
+              </p>
+              <ul class="service-card__list">
+                <li>Design unique</li>
+                <li>Animations haut de gamme</li>
+                <li>Mobile-first</li>
+                <li>SEO optimisé</li>
+              </ul>
+            </article>
+
+            <article class="service-card neu-glass" data-tilt data-reveal>
+              <div class="service-card__head">
+                <span class="service-card__num">/02</span>
+                <i data-lucide="refresh-ccw"></i>
+              </div>
+              <h3 class="service-card__title">Refonte</h3>
+              <p class="service-card__desc">
+                On reprend votre site de zéro, sans perdre votre SEO. Nouveau look, mêmes fondations solides.
+              </p>
+              <ul class="service-card__list">
+                <li>Audit complet</li>
+                <li>Migration SEO</li>
+                <li>Refonte design</li>
+                <li>Boost perf</li>
+              </ul>
+            </article>
+
+            <article class="service-card neu-glass" data-tilt data-reveal>
+              <div class="service-card__head">
+                <span class="service-card__num">/03</span>
+                <i data-lucide="search"></i>
+              </div>
+              <h3 class="service-card__title">SEO & contenu</h3>
+              <p class="service-card__desc">
+                Être trouvé. Être choisi. Une stratégie de contenu pensée pour ramener les bonnes personnes.
+              </p>
+              <ul class="service-card__list">
+                <li>Audit sémantique</li>
+                <li>Rédaction</li>
+                <li>Link building</li>
+                <li>Suivi mensuel</li>
+              </ul>
+            </article>
+
+            <article class="service-card neu-glass" data-tilt data-reveal>
+              <div class="service-card__head">
+                <span class="service-card__num">/04</span>
+                <i data-lucide="sparkles"></i>
+              </div>
+              <h3 class="service-card__title">Branding</h3>
+              <p class="service-card__desc">
+                Logo, charte, ton. On pose les fondations visuelles qui rendent votre marque reconnaissable.
+              </p>
+              <ul class="service-card__list">
+                <li>Logo & déclinaisons</li>
+                <li>Charte graphique</li>
+                <li>Direction artistique</li>
+                <li>Brand book</li>
+              </ul>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- PROCESS -->
+      <section class="process" id="process">
+        <div class="container">
+          <div class="section-head" data-reveal>
+            <span class="section-head__index">03 — Process</span>
+            <h2 class="section-head__title" data-split>
+              Quatre étapes, <em>zéro surprise</em>.
+            </h2>
+            <p class="section-head__sub" data-blur>
+              Une méthode simple, des créneaux tenus, et un livrable qui coche toutes les cases.
+            </p>
+          </div>
+
+          <div class="process__timeline">
+            <div class="process__line" aria-hidden="true"></div>
+
+            <article class="process__step neu-glass" data-reveal>
+              <div class="process__num">01</div>
+              <h3>Découverte</h3>
+              <p>
+                On échange, on écoute, on creuse. Brief, audit, benchmark, persona — on pose les bases
+                avant de toucher au design.
+              </p>
+              <span class="process__tag">~ 1 semaine</span>
+            </article>
+
+            <article class="process__step neu-glass" data-reveal>
+              <div class="process__num">02</div>
+              <h3>Direction artistique</h3>
+              <p>
+                Moodboard, wireframes, maquettes. On cherche l'idée forte qui va porter tout le projet.
+              </p>
+              <span class="process__tag">~ 1,5 semaine</span>
+            </article>
+
+            <article class="process__step neu-glass" data-reveal>
+              <div class="process__num">03</div>
+              <h3>Développement</h3>
+              <p>
+                On code, on peaufine, on intègre. Animations, responsive, perf, SEO — tout est dans le détail.
+              </p>
+              <span class="process__tag">~ 2,5 semaines</span>
+            </article>
+
+            <article class="process__step neu-glass" data-reveal>
+              <div class="process__num">04</div>
+              <h3>Lancement & suivi</h3>
+              <p>
+                Mise en ligne, tests, monitoring. On reste dispo après — parce qu'un site, ça vit.
+              </p>
+              <span class="process__tag">~ 1 semaine</span>
+            </article>
+          </div>
+        </div>
+      </section>
+
+
+
+
+
+
+
+      <!-- FAQ -->
+      <section class="faq" id="faq">
+        <div class="container">
+          <div class="section-head" data-reveal>
+            <span class="section-head__index">04 — FAQ</span>
+            <h2 class="section-head__title" data-split>
+              Les questions <em>qu'on nous pose</em> souvent.
+            </h2>
+          </div>
+
+          <div class="faq__list" data-stagger>
+            <details class="faq__item" data-reveal>
+              <summary>
+                <span>Combien coûte un site Domino Web ?</span>
+                <i data-lucide="plus"></i>
+              </summary>
+              <div class="faq__answer">
+                <p>
+                  Comptez entre <strong>470 € et 4 700 €</strong> selon la complexité. On fonctionne en forfait,
+                  pas en heures. Vous recevez un devis clair dès le premier échange, sans ligne cachée.
+                </p>
+              </div>
+            </details>
+
+            <details class="faq__item" data-reveal>
+              <summary>
+                <span>Quels sont les délais ?</span>
+                <i data-lucide="plus"></i>
+              </summary>
+              <div class="faq__answer">
+                <p>
+                  Entre <strong>4 et 8 semaines</strong> pour un site vitrine. Tout est planifié dès le brief — pas de surprise.
+                </p>
+              </div>
+            </details>
+
+            <details class="faq__item" data-reveal>
+              <summary>
+                <span>Travaillez-vous avec des clients hors France ?</span>
+                <i data-lucide="plus"></i>
+              </summary>
+              <div class="faq__answer">
+                <p>
+                  Oui, on travaille avec des marques partout en Europe. Les visios, ça remplace les cafés
+                  mais pas l'envie de bien faire.
+                </p>
+              </div>
+            </details>
+
+            <details class="faq__item" data-reveal>
+              <summary>
+                <span>Vous faites le design ET le développement ?</span>
+                <i data-lucide="plus"></i>
+              </summary>
+              <div class="faq__answer">
+                <p>
+                  Toujours. C'est ce qui fait la différence. On ne passe pas la main à un presta
+                  qu'on ne connaît pas — vous gardez un seul interlocuteur du brief au lancement.
+                </p>
+              </div>
+            </details>
+
+            <details class="faq__item" data-reveal>
+              <summary>
+                <span>Que se passe-t-il après la mise en ligne ?</span>
+                <i data-lucide="plus"></i>
+              </summary>
+              <div class="faq__answer">
+                <p>
+                  On vous forme à la prise en main : vous gardez le contrôle total de votre site après
+                  la livraison. Tout est documenté, simple à modifier, et on reste disponible au besoin.
+                </p>
+              </div>
+            </details>
+
+            <details class="faq__item" data-reveal>
+              <summary>
+                <span>Je peux vous envoyer mon idée brute, même floue ?</span>
+                <i data-lucide="plus"></i>
+              </summary>
+              <div class="faq__answer">
+                <p>
+                  C'est exactement ce qu'on préfère. Le premier appel est gratuit, et c'est précisément
+                  là qu'on transforme une idée en projet concret.
+                </p>
+              </div>
+            </details>
+          </div>
+        </div>
+      </section>
+
+      <!-- CONTACT -->
+      <section class="contact" id="contact">
+        <div class="contact__bg" aria-hidden="true"></div>
+        <div class="container contact__container">
+          <div class="contact__head" data-reveal>
+            <span class="section-head__index">05 — Contact</span>
+            <h2 class="contact__title" data-split>
+              On <em>parle</em><br />de votre projet ?
+            </h2>
+            <p class="contact__sub" data-blur>
+              Parlez-nous de votre idée, même en vrac. On revient vers vous sous 24h
+              avec un premier retour — gratuit, sans engagement.
+            </p>
+            <ul class="contact__infos">
+              <li>
+                <i data-lucide="mail"></i>
+                <a href="mailto:dominolaverne24@gmail.com">dominolaverne24@gmail.com</a>
+              </li>
+              <li>
+                <i data-lucide="map-pin"></i>
+                <span>France · 100% remote</span>
+              </li>
+              <li>
+                <i data-lucide="clock"></i>
+                <span>Lun — Ven · 9h–19h</span>
+              </li>
+            </ul>
+          </div>
+
+          <form class="form" id="contactForm" data-reveal>
+            <input type="hidden" name="access_key" value="01e96fdf-fafd-43b0-a96c-390864039b48" />
+            <input type="hidden" name="subject" value="Nouveau projet — Domino Web" />
+            <input type="hidden" name="from_name" value="Domino Web — Site" />
+            <input type="checkbox" name="botcheck" class="hidden" style="display:none" />
+
+            <div class="form__row">
+              <div class="form__field">
+                <label for="name">Votre nom <em>*</em></label>
+                <input type="text" name="name" id="name" required autocomplete="name" placeholder="Camille Dupont" />
+              </div>
+              <div class="form__field">
+                <label for="email">Votre email <em>*</em></label>
+                <input type="email" name="email" id="email" required autocomplete="email" placeholder="camille@entreprise.com" />
+              </div>
+            </div>
+
+            <div class="form__field">
+              <label for="company">Société / Projet</label>
+              <input type="text" name="company" id="company" placeholder="Nom de votre marque ou entreprise" />
+            </div>
+
+            <div class="form__field">
+              <label>Type de projet</label>
+              <div class="form__chips" data-stagger>
+                <label class="chip"><input type="radio" name="type" value="Site vitrine" /><span>Site vitrine</span></label>
+                <label class="chip"><input type="radio" name="type" value="Refonte" /><span>Refonte</span></label>
+                <label class="chip"><input type="radio" name="type" value="Branding" /><span>Branding</span></label>
+                <label class="chip"><input type="radio" name="type" value="SEO" /><span>SEO</span></label>
+                <label class="chip"><input type="radio" name="type" value="Autre" /><span>Autre</span></label>
+              </div>
+            </div>
+
+            <div class="form__field">
+              <label for="budget">Budget estimé</label>
+              <select name="budget" id="budget">
+                <option value="">Choisir une fourchette</option>
+                <option value="< 1 000€">Moins de 1 000 €</option>
+                <option value="1 000 - 2 500€">1 000 — 2 500 €</option>
+                <option value="2 500 - 4 700€">2 500 — 4 700 €</option>
+                <option value="> 4 700€">Plus de 4 700 €</option>
+                <option value="Je ne sais pas encore">Je ne sais pas encore</option>
+              </select>
+            </div>
+
+            <div class="form__field">
+              <label for="message">Parlez-nous de votre projet <em>*</em></label>
+              <textarea name="message" id="message" required rows="5" placeholder="L'idée, le contexte, ce que vous souhaitez, vos délais..."></textarea>
+            </div>
+
+            <button type="submit" class="btn btn--glass btn--neu-glass btn--lg form__submit" data-magnet>
+              <span class="btn__label">Envoyer le message</span>
+              <i data-lucide="send"></i>
+            </button>
+
+            <p class="form__status" id="formStatus" aria-live="polite"></p>
+
+            <p class="form__legal">
+              En envoyant ce formulaire, vous acceptez d'être recontacté par Domino Web. Vos données
+              ne sont jamais partagées.
+            </p>
+          </form>
+        </div>
+      </section>
+
+      <!-- FOOTER -->
+      <footer class="footer">
+        <div class="container footer__container">
+          <div class="footer__brand">
+            <a href="#hero" class="nav__logo" data-magnet>
+              <img src="assets/icons/logo-domino.png" alt="Domino Web" class="nav__logo-img" width="44" height="44" />
+              <span class="nav__logo-text">Domino <em>Web</em></span>
+            </a>
+            <p>
+              Studio web indépendant.<br />
+              <span class="footer__hand">— fait avec soin, depuis la France.</span>
+            </p>
+          </div>
+
+          <div class="footer__cols">
+            <div class="footer__col">
+              <h4>Navigation</h4>
+              <ul role="list">
+                <li><a href="#manifeste">Manifeste</a></li>
+                <li><a href="#services">Services</a></li>
+                <li><a href="#process">Process</a></li>
+                <li><a href="#contact">Contact</a></li>
+              </ul>
+            </div>
+            <div class="footer__col">
+              <h4>Contact</h4>
+              <ul role="list">
+                <li><a href="mailto:dominolaverne24@gmail.com">dominolaverne24@gmail.com</a></li>
+                <li><a href="#contact">Démarrer un projet</a></li>
+                <li><a href="#faq">FAQ</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="container footer__bottom">
+          <p>© <span id="year"></span> Domino Web. Tous droits réservés.</p>
+          <p class="footer__sign">Designed & built in <em>france</em> — with ☕ &amp; care.</p>
+        </div>
+      </footer>
+
+    </div>
+  </main>
+
+  <!-- SVG filters: gooey + neumorphism helpers -->
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true">
+    <defs>
+      <!-- Gooey filter (kept for fallback) -->
+      <filter id="gooey">
+        <feGaussianBlur in="SourceGraphic" stdDeviation="10" result="blur" />
+        <feColorMatrix in="blur" mode="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 20 -10" result="gooey" />
+        <feComposite in="SourceGraphic" in2="gooey" operator="atop" />
+      </filter>
+
+      <!-- Soft neumorphism inset shadow filter -->
+      <filter id="neu-shadow" x="-20%" y="-20%" width="140%" height="140%">
+        <feGaussianBlur in="SourceAlpha" stdDeviation="6" />
+        <feOffset dx="6" dy="6" result="darkShadow" />
+        <feFlood flood-color="#000" flood-opacity="0.4" />
+        <feComposite in2="darkShadow" operator="in" result="dark" />
+        <feGaussianBlur in="SourceAlpha" stdDeviation="6" />
+        <feOffset dx="-6" dy="-6" result="lightShadow" />
+        <feFlood flood-color="#7CFF00" flood-opacity="0.10" />
+        <feComposite in2="lightShadow" operator="in" result="light" />
+        <feMerge>
+          <feMergeNode in="dark" />
+          <feMergeNode in="light" />
+          <feMergeNode in="SourceGraphic" />
+        </feMerge>
+      </filter>
+    </defs>
+  </svg>
+
+  <!-- JS modules -->
+  <script src="js/lenis.js" defer></script>
+  <script src="js/loader.js" defer></script>
+  <script src="js/cursor.js" defer></script>
+  <script src="js/nav.js" defer></script>
+  <script src="js/animations.js" defer></script>
+  <script src="js/form.js" defer></script>
+  <script src="js/main.js" defer></script>
+</body>
+</html>

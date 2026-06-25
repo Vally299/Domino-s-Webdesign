@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#100B00" />
+  <title>404 — Page introuvable · Domino Web</title>
+  <meta name="robots" content="noindex" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@600;800&family=Manrope:wght@400;500&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html, body { height: 100%; }
+    body {
+      font-family: "Manrope", system-ui, sans-serif;
+      background: #100B00;
+      color: #ECFFC3;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+      overflow: hidden;
+    }
+    .wrap { text-align: center; max-width: 560px; }
+    .num {
+      font-family: "Bricolage Grotesque", sans-serif;
+      font-size: clamp(120px, 22vw, 220px);
+      font-weight: 800;
+      line-height: 0.9;
+      letter-spacing: -0.05em;
+      background: linear-gradient(135deg, #ECFFC3, #A1D6B0);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      margin-bottom: 16px;
+    }
+    h1 {
+      font-family: "Bricolage Grotesque", sans-serif;
+      font-size: clamp(22px, 3vw, 32px);
+      font-weight: 600;
+      margin-bottom: 12px;
+    }
+    p {
+      color: #A1D6B0;
+      font-size: 16px;
+      line-height: 1.6;
+      margin-bottom: 32px;
+    }
+    a.btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 14px 28px;
+      border: 1px solid rgba(236, 255, 195, 0.25);
+      border-radius: 999px;
+      background: linear-gradient(135deg, rgba(236, 255, 195, 0.18), rgba(161, 214, 176, 0.10));
+      color: #ECFFC3;
+      text-decoration: none;
+      font-weight: 500;
+      transition: transform 300ms, border-color 300ms;
+    }
+    a.btn:hover { transform: translateY(-2px); border-color: rgba(236, 255, 195, 0.55); }
+    .bg {
+      position: fixed; inset: 0; z-index: -1; pointer-events: none;
+      background:
+        radial-gradient(circle at 20% 30%, rgba(236, 255, 195, 0.08), transparent 50%),
+        radial-gradient(circle at 80% 70%, rgba(161, 214, 176, 0.06), transparent 50%);
+    }
+  </style>
+</head>
+<body>
+  <div class="bg" aria-hidden="true"></div>
+  <div class="wrap">
+    <div class="num">404</div>
+    <h1>Cette page s'est égarée.</h1>
+    <p>Le lien que vous suivez n'existe pas (ou plus). Pas d'inquiétude, on vous raccompagne.</p>
+    <a href="./" class="btn">← Retour à l'accueil</a>
+  </div>
+</body>
+</html>

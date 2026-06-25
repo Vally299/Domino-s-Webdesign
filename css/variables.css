@@ -1,0 +1,157 @@
+/* ============================================
+   VARIABLES — Design tokens
+   Palette premium : noir & blanc + dégradé LED
+   vert pomme → vert fluo → blanc (titres, boutons, LED)
+   Style néomorphique global
+   ============================================ */
+
+:root {
+  /* ===== Color palette — noir & blanc (base) ===== */
+  --c-bg: #0E0E0E;            /* fond global noir profond */
+  --c-bg-2: #131313;          /* surface légèrement plus claire */
+  --c-bg-3: #1C1C1C;          /* surface élevée */
+  --c-bg-4: #222222;          /* surface sur-élevée (néomorphisme clair) */
+  --c-text: #FFFFFF;          /* texte principal blanc pur */
+  --c-text-soft: #B0B0B0;     /* texte secondaire gris clair */
+  --c-text-mute: rgba(255, 255, 255, 0.55);
+  --c-text-line: rgba(255, 255, 255, 0.10);
+  --c-white: #FFFFFF;
+  --c-dark: #0E0E0E;
+
+  /* ===== Color palette — accents LED vert pomme / vert fluo ===== */
+  --c-accent: #7CFF00;        /* vert pomme vif (LED principal) */
+  --c-accent-2: #00FF7F;      /* vert fluo menthe (LED secondaire) */
+  --c-accent-glow: rgba(124, 255, 0, 0.55);
+  --c-accent-glow-2: rgba(0, 255, 127, 0.45);
+
+  /* ===== Dégradés signature (vert pomme → vert fluo → blanc) ===== */
+  --grad-led: linear-gradient(135deg, #7CFF00 0%, #00FF7F 60%, #FFFFFF 100%);
+  --grad-led-soft: linear-gradient(135deg, rgba(124, 255, 0, 0.18) 0%, rgba(0, 255, 127, 0.12) 50%, rgba(255, 255, 255, 0.08) 100%);
+  --grad-led-line: linear-gradient(90deg, #7CFF00 0%, #00FF7F 50%, #FFFFFF 100%);
+  --grad-led-radial: radial-gradient(ellipse at 50% 50%, rgba(124, 255, 0, 0.45) 0%, rgba(0, 255, 127, 0.30) 40%, rgba(255, 255, 255, 0.10) 100%);
+  --grad-led-text: linear-gradient(135deg, #7CFF00 0%, #00FF7F 50%, #FFFFFF 100%);
+
+  /* RGB pour utilisation dans rgba() */
+  --rgb-accent: 124, 255, 0;     /* vert pomme */
+  --rgb-accent-2: 0, 255, 127;   /* vert fluo */
+  --rgb-text: 255, 255, 255;     /* blanc */
+
+  /* ===== Radii ===== */
+  --r-xs: 6px;
+  --r-sm: 12px;
+  --r-md: 18px;
+  --r-lg: 28px;
+  --r-xl: 40px;
+  --r-2xl: 56px;
+  --r-pill: 999px;
+
+  /* ===== Spacing ===== */
+  --s-1: 4px;
+  --s-2: 8px;
+  --s-3: 12px;
+  --s-4: 16px;
+  --s-5: 24px;
+  --s-6: 32px;
+  --s-7: 48px;
+  --s-8: 64px;
+  --s-9: 96px;
+  --s-10: 128px;
+  --s-11: 160px;
+
+  /* ===== Container ===== */
+  --container-max: 1320px;
+  --container-pad: clamp(20px, 4vw, 56px);
+
+  /* ===== Typography ===== */
+  --f-display: "Bricolage Grotesque", system-ui, sans-serif;
+  --f-body: "Manrope", system-ui, sans-serif;
+  --f-hand: "Caveat", cursive;
+  --f-mono: "JetBrains Mono", ui-monospace, monospace;
+
+  /* ===== Fluid type ===== */
+  --fs-1: clamp(13px, 1.1vw, 14px);
+  --fs-2: clamp(14px, 1.2vw, 15px);
+  --fs-3: clamp(15px, 1.3vw, 16px);
+  --fs-4: clamp(16px, 1.4vw, 18px);
+  --fs-5: clamp(18px, 1.6vw, 22px);
+  --fs-6: clamp(22px, 2.2vw, 32px);
+  --fs-7: clamp(28px, 3.6vw, 52px);
+  --fs-8: clamp(40px, 6vw, 88px);
+  --fs-9: clamp(60px, 10vw, 160px);
+  --fs-10: clamp(80px, 14vw, 220px);
+
+  /* ===== Shadows / glows ===== */
+  --shadow-soft: 0 6px 20px -8px rgba(0, 0, 0, 0.5);
+  --shadow-card: 0 18px 60px -20px rgba(0, 0, 0, 0.7);
+  --shadow-deep: 0 30px 90px -30px rgba(0, 0, 0, 0.85);
+
+  /* Effets LED (vert pomme + vert fluo) */
+  --glow-led: 0 0 24px rgba(var(--rgb-accent), 0.45),
+              0 0 60px rgba(var(--rgb-accent-2), 0.25);
+  --glow-led-strong: 0 0 30px rgba(var(--rgb-accent), 0.65),
+                    0 0 80px rgba(var(--rgb-accent-2), 0.35);
+  --glow-led-soft: 0 0 20px rgba(var(--rgb-accent), 0.18);
+
+  /* ===== Néomorphisme ===== */
+  /* Ombres claires (haut-gauche) et foncées (bas-droite) */
+  --neu-shadow-dark: 8px 8px 20px rgba(0, 0, 0, 0.55);
+  --neu-shadow-light: -6px -6px 16px rgba(255, 255, 255, 0.05);
+  --neu-card-shadow:
+    10px 10px 30px rgba(0, 0, 0, 0.55),
+    -8px -8px 20px rgba(255, 255, 255, 0.05);
+  --neu-card-hover-shadow:
+    14px 14px 36px rgba(0, 0, 0, 0.6),
+    -10px -10px 24px rgba(255, 255, 255, 0.07);
+  --neu-inset-shadow:
+    inset 6px 6px 14px rgba(0, 0, 0, 0.5),
+    inset -4px -4px 10px rgba(255, 255, 255, 0.04);
+
+  /* ===== Liquid Glass / Verre liquide — ombres exactes du composant shadcn LiquidButton dark ===== */
+  --glass-shadow:
+    0 0 8px rgba(0, 0, 0, 0.03),
+    0 2px 6px rgba(0, 0, 0, 0.08),
+    inset 3px 3px 0.5px -3.5px rgba(255, 255, 255, 0.09),
+    inset -3px -3px 0.5px -3.5px rgba(255, 255, 255, 0.85),
+    inset 1px 1px 1px -0.5px rgba(255, 255, 255, 0.6),
+    inset -1px -1px 1px -0.5px rgba(255, 255, 255, 0.6),
+    inset 0 0 6px 6px rgba(255, 255, 255, 0.12),
+    inset 0 0 2px 2px rgba(255, 255, 255, 0.06),
+    0 0 12px rgba(0, 0, 0, 0.15);
+  --glass-shadow-hover:
+    0 0 10px rgba(0, 0, 0, 0.04),
+    0 4px 12px rgba(0, 0, 0, 0.10),
+    inset 3px 3px 0.5px -3.5px rgba(255, 255, 255, 0.12),
+    inset -3px -3px 0.5px -3.5px rgba(255, 255, 255, 0.90),
+    inset 1px 1px 1px -0.5px rgba(255, 255, 255, 0.7),
+    inset -1px -1px 1px -0.5px rgba(255, 255, 255, 0.7),
+    inset 0 0 6px 6px rgba(255, 255, 255, 0.15),
+    inset 0 0 2px 2px rgba(255, 255, 255, 0.08),
+    0 0 16px rgba(0, 0, 0, 0.18);
+  --glass-shadow-pressed:
+    inset 2px 2px 4px rgba(0, 0, 0, 0.2),
+    inset -1px -1px 2px rgba(255, 255, 255, 0.1),
+    0 1px 2px rgba(0, 0, 0, 0.15);
+
+  /* ===== Métal brossé — gradient exact du composant shadcn MetalButton ===== */
+  --metal-outer: linear-gradient(to bottom, #000, #A0A0A0);
+  --metal-inner: linear-gradient(to bottom, #FAFAFA, #3E3E3E, #E5E5E5);
+  --metal-face: linear-gradient(to bottom, #B9B9B9, #969696);
+  --metal-text-shadow: 0 -1px 0 rgb(80 80 80 / 100%);
+
+  /* ===== Transitions ===== */
+  --ease: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-in: cubic-bezier(0.7, 0, 0.84, 0);
+  --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+  --t-fast: 200ms;
+  --t-base: 400ms;
+  --t-slow: 700ms;
+
+  /* ===== Z-index ===== */
+  --z-base: 1;
+  --z-cursor: 9000;
+  --z-nav: 1000;
+  --z-menu: 1100;
+  --z-loader: 9999;
+  --z-lightbox: 9500;
+}

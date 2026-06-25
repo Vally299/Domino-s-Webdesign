@@ -1,0 +1,272 @@
+/* ============================================
+   ANIMATIONS — Keyframes & reveal states
+   ============================================ */
+
+/* ===== Keyframes ===== */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes drawPath {
+  to { stroke-dashoffset: 0; }
+}
+
+@keyframes fillBar {
+  from { width: 0%; }
+  to { width: 100%; }
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.6; transform: scale(0.85); }
+}
+
+@keyframes scrollLine {
+  0% { transform: translateY(-100%); }
+  100% { transform: translateY(100%); }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50%      { transform: translateY(-12px); }
+}
+
+/* ===== Spline robot keyframes ===== */
+@keyframes robotFloat {
+  0%, 100% { transform: translateY(-50%) translateZ(0); }
+  50% { transform: translateY(-52%) translateZ(0); }
+}
+
+@keyframes robotGlowPulse {
+  0%, 100% { opacity: 0.4; transform: translate(-50%, -50%) scale(1); }
+  50% { opacity: 0.7; transform: translate(-50%, -50%) scale(1.1); }
+}
+
+/* ===== Reveal on scroll states ===== */
+[data-reveal] {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 800ms var(--ease), transform 800ms var(--ease);
+}
+
+[data-reveal].is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+[data-reveal] [data-reveal] { transition-delay: 100ms; }
+
+/* ===== Split text states ===== */
+[data-split] .split-line {
+  display: block;
+  overflow: hidden;
+  /* Padding bas pour laisser respirer les descendants (ç, g, p, q, y, j) */
+  padding-bottom: 0.18em;
+  /* Marge haute négative pour garder l'alignement visuel serré */
+  margin-top: -0.05em;
+}
+
+[data-split] .split-line > span {
+  display: inline-block;
+  transform: translateY(110%);
+  transition: transform 1000ms var(--ease);
+}
+
+[data-split] .split-word {
+  display: inline-block;
+  overflow: hidden;
+  vertical-align: top;
+  /* Padding à droite pour éviter que la dernière lettre soit coupée */
+  padding-right: 0.08em;
+  padding-bottom: 0.05em;
+}
+
+[data-split] .split-word > span {
+  display: inline-block;
+  transform: translateY(110%);
+  transition: transform 1000ms var(--ease);
+  /* Petit padding pour les jambages */
+  padding: 0 0.02em;
+}
+
+[data-split].is-visible .split-line > span,
+[data-split].is-visible .split-word > span {
+  transform: translateY(0);
+}
+
+[data-split].is-visible .split-line:nth-child(1) > span { transition-delay: 0ms; }
+[data-split].is-visible .split-line:nth-child(2) > span { transition-delay: 120ms; }
+[data-split].is-visible .split-line:nth-child(3) > span { transition-delay: 240ms; }
+[data-split].is-visible .split-line:nth-child(4) > span { transition-delay: 360ms; }
+
+/* ===== Page reveal (post-loader) ===== */
+body.is-ready section {
+  opacity: 1;
+}
+
+/* ============================================
+   TEXT ANIMATIONS — Diversified effects
+   ============================================ */
+
+/* ----- data-blur : révélation avec blur (pour sous-titres, paragraphes) ----- */
+[data-blur] {
+  opacity: 0;
+  filter: blur(12px);
+  transform: translateY(20px);
+  transition:
+    opacity 900ms var(--ease),
+    filter 900ms var(--ease),
+    transform 900ms var(--ease);
+}
+
+[data-blur].is-visible {
+  opacity: 1;
+  filter: blur(0);
+  transform: translateY(0);
+}
+
+/* ----- data-highlight : effet de surlignage sweep sur les <em> ----- */
+[data-highlight] em {
+  position: relative;
+  display: inline-block;
+  background-image: linear-gradient(
+    90deg,
+    var(--c-accent) 0%,
+    var(--c-accent) 100%
+  );
+  background-size: 0% 100%;
+  background-position: 0 50%;
+  background-repeat: no-repeat;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+  transition: background-size 1200ms cubic-bezier(0.77, 0, 0.18, 1);
+}
+
+[data-highlight].is-visible em {
+  background-size: 100% 100%;
+}
+
+/* ----- data-stagger : stagger de mots sur les <li> d'une liste ----- */
+[data-stagger] > * {
+  opacity: 0;
+  transform: translateY(15px);
+  transition: opacity 700ms var(--ease), transform 700ms var(--ease);
+}
+
+[data-stagger].is-visible > *:nth-child(1) { transition-delay: 0ms; }
+[data-stagger].is-visible > *:nth-child(2) { transition-delay: 80ms; }
+[data-stagger].is-visible > *:nth-child(3) { transition-delay: 160ms; }
+[data-stagger].is-visible > *:nth-child(4) { transition-delay: 240ms; }
+[data-stagger].is-visible > *:nth-child(5) { transition-delay: 320ms; }
+[data-stagger].is-visible > *:nth-child(6) { transition-delay: 400ms; }
+[data-stagger].is-visible > *:nth-child(7) { transition-delay: 480ms; }
+[data-stagger].is-visible > *:nth-child(8) { transition-delay: 560ms; }
+
+[data-stagger].is-visible > * {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ----- data-fade : simple fade in (utilitaire léger) ----- */
+[data-fade] {
+  opacity: 0;
+  transition: opacity 1200ms var(--ease);
+}
+
+[data-fade].is-visible {
+  opacity: 1;
+}
+
+/* ----- data-underline : soulignement qui se dessine (pour liens) ----- */
+[data-underline] {
+  position: relative;
+  display: inline-block;
+}
+
+[data-underline]::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -2px;
+  width: 100%;
+  height: 1px;
+  background: currentColor;
+  transform: scaleX(0);
+  transform-origin: right center;
+  transition: transform 600ms cubic-bezier(0.77, 0, 0.18, 1);
+}
+
+[data-underline].is-visible::after {
+  transform: scaleX(1);
+  transform-origin: left center;
+}
+
+/* ----- data-pop : pop in avec léger scale ----- */
+[data-pop] {
+  opacity: 0;
+  transform: scale(0.85);
+  transition:
+    opacity 600ms var(--ease),
+    transform 600ms cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+[data-pop].is-visible {
+  opacity: 1;
+  transform: scale(1);
+}
+
+/* ----- em dans les titres : animation de "color sweep" sur le mot-clé ----- */
+h1 em, h2 em, h3 em {
+  background-image: linear-gradient(
+    90deg,
+    var(--c-accent) 0%,
+    #00ff7f 100%
+  );
+  background-size: 0% 100%;
+  background-position: 0 50%;
+  background-repeat: no-repeat;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+  display: inline-block;
+  transition: background-size 1400ms cubic-bezier(0.77, 0, 0.18, 1);
+  transition-delay: 1100ms;
+}
+
+[data-split].is-visible em,
+.is-visible h1 em,
+.is-visible h2 em,
+.is-visible h3 em {
+  background-size: 100% 100%;
+}
+
+/* ===== Hover lift utility ===== */
+.hover-lift {
+  transition: transform 400ms var(--ease);
+}
+
+.hover-lift:hover {
+  transform: translateY(-4px);
+}
+
+/* ===== Glow pulse ===== */
+.glow-pulse {
+  animation: glowPulse 3s ease-in-out infinite;
+}
+
+@keyframes glowPulse {
+  0%, 100% { box-shadow: 0 0 30px -10px rgba(124, 255, 0, 0.3); }
+  50% { box-shadow: 0 0 50px -5px rgba(124, 255, 0, 0.5); }
+}
+
+.float {
+  animation: float 4s ease-in-out infinite;
+}
+
+.marquee:hover .marquee__track {
+  animation-play-state: paused;
+}
